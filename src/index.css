@@ -1,0 +1,376 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/scrollbar.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Tailwind v4 is CSS-first: utilities like bg-background, text-foreground,
+  bg-accent, border-border, etc. only exist if we map them to CSS variables
+  here. This block is what makes every color utility used across the app
+  (defined as --background, --accent, --card, ... below) resolve correctly.
+*/
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /*
+    LOCKED DESIGN SYSTEM — sourced 1:1 from the Hero Section.
+    "Deep Space Navy" background (#050816) + "Sky Blue" accent (sky-400/blue-600),
+    white primary actions, and white-opacity glassmorphism throughout.
+    Every page in the app inherits this palette through these tokens —
+    do not reintroduce the old green/gold values anywhere.
+  */
+
+  /* Primary: Hero's white CTA button */
+  --primary: #ffffff;
+  --primary-foreground: #050816;
+
+  /* Sidebar */
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #050816;
+
+  /* Chart Colors: White -> Sky -> Blue gradient (mirrors Hero's gradient text/progress bar) */
+  --chart-1: #7dd3fc;
+  --chart-2: #38bdf8;
+  --chart-3: #0ea5e9;
+  --chart-4: #2563eb;
+  --chart-5: #1e3a8a;
+
+  /* Radius: soft, modern, matches Hero's rounded-2xl/3xl/full language */
+  --radius: 1rem;
+
+  /* Background: Hero's exact Deep Space Navy */
+  --background: #050816;
+  --foreground: #ffffff;
+
+  /* Card: Hero's glass card treatment (bg-white/6) */
+  --card: rgba(255, 255, 255, 0.06);
+  --card-foreground: #ffffff;
+
+  /* Popover: near-opaque navy glass for legible dropdown/tooltip content */
+  --popover: rgba(8, 12, 28, 0.96);
+  --popover-foreground: #ffffff;
+
+  /* Secondary: Hero's badge/secondary-button surface (bg-white/5) */
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: #bfdbfe;
+
+  /* Muted: Hero's blue-200/60 secondary text treatment */
+  --muted: rgba(255, 255, 255, 0.08);
+  --muted-foreground: rgba(191, 219, 254, 0.6);
+
+  /* Accent: Hero's signature Sky Blue highlight color */
+  --accent: #38bdf8;
+  --accent-foreground: #050816;
+
+  /* Destructive: standard semantic error red (form validation, etc.) */
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  /* Border: Hero's most common border (border-white/10) */
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #38bdf8;
+
+  /* Sidebar */
+  --sidebar: #050816;
+  --sidebar-foreground: #ffffff;
+  --sidebar-accent: #38bdf8;
+  --sidebar-accent-foreground: #050816;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #38bdf8;
+}
+
+.dark {
+  /* Dark mode is the default for this design system (mirrors :root) */
+  --primary: #ffffff;
+  --primary-foreground: #050816;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #050816;
+  --background: #050816;
+  --foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-foreground: #ffffff;
+  --popover: rgba(8, 12, 28, 0.96);
+  --popover-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: #bfdbfe;
+  --muted: rgba(255, 255, 255, 0.08);
+  --muted-foreground: rgba(191, 219, 254, 0.6);
+  --accent: #38bdf8;
+  --accent-foreground: #050816;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #38bdf8;
+  --chart-1: #7dd3fc;
+  --chart-2: #38bdf8;
+  --chart-3: #0ea5e9;
+  --chart-4: #2563eb;
+  --chart-5: #1e3a8a;
+  --sidebar: #050816;
+  --sidebar-foreground: #ffffff;
+  --sidebar-accent: #38bdf8;
+  --sidebar-accent-foreground: #050816;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #38bdf8;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  /* PREMIUM TYPOGRAPHY — mirrors the Hero heading's exact scale/weight/tracking */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium tracking-tighter;
+  }
+
+  h1 {
+    @apply text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[0.95];
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl leading-[1.05];
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+}
+
+@layer components {
+  /* GLASSMORPHISM EFFECTS — tuned to the Hero's exact glass card recipe */
+  .glass {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+
+  .glass-sm {
+    @apply backdrop-blur-lg bg-white/4 border border-white/8;
+  }
+
+  .glass-lg {
+    @apply backdrop-blur-[28px] bg-white/6 border border-white/12;
+  }
+
+  /* GLOW EFFECTS — Hero's Sky Blue glow (rgba(56,189,248,*)) */
+  .glow-accent {
+    @apply shadow-[0_0_40px_rgba(56,189,248,0.3)];
+  }
+
+  .glow-accent-sm {
+    @apply shadow-[0_0_20px_rgba(56,189,248,0.2)];
+  }
+
+  .glow-accent-lg {
+    @apply shadow-[0_0_60px_rgba(56,189,248,0.4)];
+  }
+
+  /* AURORA EFFECTS — recolored to Hero's white -> sky -> blue radial glow */
+  .aurora {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aurora::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, rgba(37, 99, 235, 0.08) 50%, transparent 80%);
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  /* FLOATING ANIMATION */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* FADE UP ANIMATION — timing/easing matches the Hero's fadeSlideIn keyframe */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+
+  /* SCALE IN ANIMATION */
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  /* GLASS HOVER EFFECT */
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)];
+  }
+
+  /* MAGNETIC BUTTON — hover glow matches Hero's shadow-sky-400 button treatment */
+  .magnetic-btn {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .magnetic-btn:hover {
+    @apply scale-105 shadow-[0_20px_60px_rgba(56,189,248,0.35)];
+  }
+
+  .magnetic-btn:active {
+    @apply scale-95;
+  }
+
+  /* CONTAINER */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* PREMIUM BUTTONS — copied 1:1 from the Hero's button markup */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#050816] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-sky-400/50 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-sky-400/30 active:scale-[0.98];
+  }
+
+  /* PREMIUM CARDS — copied 1:1 from the Hero's stats-card treatment */
+  .card-premium {
+    @apply relative overflow-hidden rounded-3xl border border-white/12 bg-white/6 p-8 backdrop-blur-[28px] shadow-2xl transition-all duration-300 hover:bg-white/8 hover:shadow-[0_30px_80px_rgba(56,189,248,0.15)];
+  }
+
+  /* REVEAL ON SCROLL — timing matches the Hero's fadeSlideIn keyframe */
+  @keyframes revealOnScroll {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reveal-on-scroll {
+    animation: revealOnScroll 0.8s ease-out forwards;
+  }
+}
