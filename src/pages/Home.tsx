@@ -1,162 +1,47 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Users, Briefcase, Award, TrendingUp, Star } from 'lucide-react';
+import { CheckCircle, Star, Target, FileText, Sparkles, BrainCircuit } from 'lucide-react';
 import Layout from '@/layouts/Layout';
 import HeroSection from '@/components/ui/hero-section';
 
 /**
  * UpEducative Homepage - LOCKED DESIGN SYSTEM
- * Deep Space Navy + Sky Blue + Glassmorphism (matches the Hero Section)
- * Premium SaaS aesthetic with aurora effects
  */
 
 export default function Home() {
   return (
     <Layout>
       <HeroSection />
-      <TrustedBySection />
-      <StatisticsSection />
+      <TrainingTracksSection />
       <ProgramsSection />
-      <WhyUpEducativeSection />
-      <StudentJourneySection />
       <PlacementSupportSection />
       <TestimonialsSection />
       <FAQSection />
-      <CTASection />
     </Layout>
   );
 }
 
 // ============================================================================
-// TRUSTED BY SECTION
+// TRAINING TRACKS SECTION
 // ============================================================================
-function TrustedBySection() {
-  const colleges = [
-    'IIT Delhi',
-    'NIT Bangalore',
-    'BITS Pilani',
-    'VIT Vellore',
-    'Manipal University',
-    'Anna University',
-  ];
-
-  return (
-    <section className="py-20 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Trusted Partners</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Partnered with India's Top Colleges</h2>
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {colleges.map((college, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="glass rounded-2xl p-6 flex items-center justify-center text-center hover:bg-white/10 transition-all duration-300 cursor-default"
-            >
-              <p className="text-foreground/80 font-medium">{college}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// STATISTICS SECTION
-// ============================================================================
-function StatisticsSection() {
-  const stats = [
-    { value: '9,500+', label: 'Students Placed', icon: Users },
-    { value: '200+', label: 'Partner Companies', icon: Briefcase },
-    { value: '50+', label: 'Training Programs', icon: Award },
-    { value: '₹25,000', label: 'Avg. Stipend', icon: TrendingUp },
-  ];
-
-  return (
-    <section className="py-20 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Proven Track Record</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Our Impact So Far</h2>
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {stats.map((stat, i) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="glass rounded-3xl p-8 text-center hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-white/10 ring-1 ring-white/20 flex items-center justify-center mx-auto mb-6">
-                  <Icon className="w-6 h-6 text-accent" />
-                </div>
-                <p className="text-4xl font-bold text-accent mb-2">{stat.value}</p>
-                <p className="text-foreground/70">{stat.label}</p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// PROGRAMS SECTION
-// ============================================================================
-function ProgramsSection() {
+function TrainingTracksSection() {
   const programs = [
     {
-      title: 'Summer Internship',
-      duration: '6-8 weeks',
-      stipend: '₹15,000 - ₹30,000',
-      features: ['Flexible timing', 'Stipend included', 'Certificate'],
+      title: 'Web Development',
+      duration: '8 weeks',
+      description: 'Master modern web technologies and frameworks',
+      topics: ['React', 'Node.js', 'Databases', 'Deployment'],
     },
     {
-      title: 'Semester Internship',
-      duration: '4-6 weeks',
-      stipend: '₹12,000 - ₹25,000',
-      features: ['Part-time option', 'Flexible hours', 'Support'],
+      title: 'Data Science',
+      duration: '8 weeks',
+      description: 'Learn data analysis and machine learning',
+      topics: ['Python', 'ML Algorithms', 'Data Visualization', 'Projects'],
     },
     {
-      title: 'Extended Internship',
-      duration: '3-6 months',
-      stipend: '₹20,000 - ₹50,000',
-      features: ['Full-time', 'Higher stipend', 'Job offer potential'],
+      title: 'Cloud Computing',
+      duration: '6 weeks',
+      description: 'AWS, Azure, and cloud architecture basics',
+      topics: ['AWS Services', 'Cloud Architecture', 'DevOps', 'Security'],
     },
   ];
 
@@ -170,8 +55,8 @@ function ProgramsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Available Programs</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Choose Your Path</h2>
+          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Training Tracks</p>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Choose Your Specialization</h2>
         </motion.div>
 
         <motion.div
@@ -188,8 +73,56 @@ function ProgramsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="glass rounded-3xl p-8 hover:bg-white/10 transition-all duration-300 group"
+              className="glass rounded-3xl p-8 hover:bg-white/10 transition-all duration-300 flex flex-col h-full"
             >
+              <div className="flex-grow">
+                <h3 className="text-2xl font-semibold text-foreground mb-2">{program.title}</h3>
+                <p className="text-accent font-semibold mb-4">{program.duration}</p>
+                <p className="text-foreground/70 mb-6">{program.description}</p>
+                <div className="space-y-3 mb-8">
+                  {program.topics.map((topic, j) => (
+                    <div key={j} className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                      <span className="text-foreground/80">{topic}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <motion.button
+                className="w-full py-3 rounded-full bg-white text-[#050816] font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/50 mt-auto"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Enroll Now
+              </motion.button>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================================
+// PROGRAMS SECTION
+// ============================================================================
+function ProgramsSection() {
+  const programs = [
+    { title: 'Summer Internship', duration: '6-8 weeks', stipend: '₹15,000 - ₹30,000', features: ['Flexible timing', 'Stipend included', 'Certificate'] },
+    { title: 'Semester Internship', duration: '4-6 weeks', stipend: '₹12,000 - ₹25,000', features: ['Part-time option', 'Flexible hours', 'Support'] },
+    { title: 'Extended Internship', duration: '3-6 months', stipend: '₹20,000 - ₹50,000', features: ['Full-time', 'Higher stipend', 'Job offer potential'] },
+  ];
+
+  return (
+    <section className="py-20 border-t border-white/10">
+      <div className="container mx-auto px-4">
+        <motion.div className="text-center mb-16">
+          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Available Programs</p>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Choose Your Path</h2>
+        </motion.div>
+        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {programs.map((program, i) => (
+            <motion.div key={i} className="glass rounded-3xl p-8 hover:bg-white/10 transition-all duration-300">
               <h3 className="text-2xl font-semibold text-foreground mb-4">{program.title}</h3>
               <div className="space-y-3 mb-8">
                 <p className="text-foreground/70"><span className="text-accent font-semibold">Duration:</span> {program.duration}</p>
@@ -203,13 +136,7 @@ function ProgramsSection() {
                   </div>
                 ))}
               </div>
-              <motion.button
-                className="w-full py-3 rounded-full bg-white text-[#050816] font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/50"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Apply Now
-              </motion.button>
+              <motion.button className="w-full py-3 rounded-full bg-white text-[#050816] font-semibold transition-all hover:shadow-lg hover:shadow-sky-400/50">Apply Now</motion.button>
             </motion.div>
           ))}
         </motion.div>
@@ -219,152 +146,52 @@ function ProgramsSection() {
 }
 
 // ============================================================================
-// WHY UPEDUCATIVE SECTION
-// ============================================================================
-function WhyUpEducativeSection() {
-  const reasons = [
-    { title: 'Premium Quality', description: 'Handpicked companies and verified opportunities' },
-    { title: 'Expert Mentorship', description: 'Guidance from industry professionals' },
-    { title: 'Career Support', description: 'Placement assistance and job referrals' },
-    { title: 'Verified Outcomes', description: 'Transparent tracking of placements' },
-    { title: 'Flexible Programs', description: 'Options for every academic schedule' },
-    { title: 'Trusted Network', description: 'Connected with 500+ colleges' },
-  ];
-
-  return (
-    <section className="py-20 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Why Choose Us</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">What Makes UpEducative Different</h2>
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {reasons.map((reason, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="glass rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
-            >
-              <h3 className="text-lg font-semibold text-foreground mb-3">{reason.title}</h3>
-              <p className="text-foreground/70">{reason.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// STUDENT JOURNEY SECTION
-// ============================================================================
-function StudentJourneySection() {
-  const steps = [
-    { number: '01', title: 'Register', description: 'Create your profile and complete assessment' },
-    { number: '02', title: 'Browse', description: 'Explore internship opportunities' },
-    { number: '03', title: 'Apply', description: 'Submit applications to companies' },
-    { number: '04', title: 'Interview', description: 'Participate in company interviews' },
-    { number: '05', title: 'Succeed', description: 'Land your internship and grow' },
-  ];
-
-  return (
-    <section className="py-20 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Your Path</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Student Journey</h2>
-        </motion.div>
-
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-5 gap-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {steps.map((step, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="glass rounded-2xl p-6 text-center relative"
-            >
-              <p className="text-5xl font-bold text-accent/30 mb-4">{step.number}</p>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
-              <p className="text-foreground/70 text-sm">{step.description}</p>
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute -right-2 top-1/2 transform -translate-y-1/2">
-                  <ArrowRight className="w-6 h-6 text-accent/30" />
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// PLACEMENT SUPPORT SECTION
+// RESUME BUILDER SECTION
 // ============================================================================
 function PlacementSupportSection() {
   return (
     <section className="py-20 border-t border-white/10">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-        >
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Support</p>
-            <h2 className="text-4xl md:text-5xl font-medium text-foreground mb-6">Comprehensive Placement Assistance</h2>
-            <p className="text-lg text-foreground/70 mb-8">We don't just connect you with opportunities. We support you throughout your journey with resume reviews, interview prep, and career guidance.</p>
+            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Resume Builder</p>
+            <h2 className="text-4xl md:text-5xl font-medium text-foreground mb-6">No resume? No problem.</h2>
+            <p className="text-lg text-foreground/70 mb-8">Let us help you create one or improve the one you've got with our intelligent tools.</p>
             <div className="space-y-4">
-              {['Resume Optimization', 'Interview Coaching', 'Offer Negotiation', 'Career Mentoring'].map((item, i) => (
+              {[
+                { icon: Sparkles, text: 'AI-powered resume builder' },
+                { icon: BrainCircuit, text: 'Intelligent feedback engine' },
+                { icon: CheckCircle, text: 'Optimized for freshers' }
+              ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <CheckCircle className="w-6 h-6 text-accent flex-shrink-0" />
-                  <span className="text-foreground/80">{item}</span>
+                  <item.icon className="w-6 h-6 text-accent flex-shrink-0" />
+                  <span className="text-foreground/80">{item.text}</span>
                 </div>
               ))}
             </div>
           </div>
-          <motion.div
-            className="glass rounded-3xl p-12 aspect-square flex items-center justify-center"
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 6, repeat: Infinity }}
-          >
-            <div className="text-center">
-              <Award className="w-16 h-16 text-accent mx-auto mb-6" />
-              <p className="text-foreground/80 font-medium">Expert Support Every Step</p>
+
+          <motion.div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-[28px] shadow-2xl">
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10 ring-1 ring-accent/20">
+                  <FileText className="h-7 w-7 text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Build Your Professional Resume</h3>
+                  <p className="text-sm text-blue-200/60">Ready in minutes</p>
+                </div>
+              </div>
+              
+              <p className="text-foreground/70 mb-8">
+                Choose from ATS-friendly templates designed to get you noticed by top recruiters.
+              </p>
+
+              <button className="w-full py-4 rounded-xl bg-accent text-[#050816] font-semibold hover:bg-accent/90 transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+                Build my resume →
+              </button>
             </div>
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[50px]" />
           </motion.div>
         </motion.div>
       </div>
@@ -493,35 +320,6 @@ function FAQSection() {
               <p className="text-foreground/70">{faq.a}</p>
             </motion.div>
           ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// CTA SECTION
-// ============================================================================
-function CTASection() {
-  return (
-    <section className="py-20 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="glass rounded-3xl p-12 md:p-20 text-center aurora"
-        >
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground mb-6">Ready to Transform Your Career?</h2>
-          <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">Join thousands of students who've already started their journey with UpEducative. Your dream internship is just one click away.</p>
-          <motion.button
-            className="btn-primary px-10 py-4"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get Started Today
-          </motion.button>
         </motion.div>
       </div>
     </section>

@@ -12,6 +12,7 @@ export default function About() {
     <Layout>
       <HeroSection />
       <MissionVisionSection />
+      <WhyUpEducativeSection />
       <ValuesSection />
       <ImpactSection />
       <TeamSection />
@@ -84,6 +85,39 @@ function MissionVisionSection() {
               To become India's most trusted platform for internships and training, where every student has equal access to world-class opportunities, regardless of their college's reputation or network.
             </p>
           </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ============================================================================
+// WHY UPEDUCATIVE SECTION (Moved from Home.tsx)
+// ============================================================================
+function WhyUpEducativeSection() {
+  const reasons = [
+    { title: 'Premium Quality', description: 'Handpicked companies and verified opportunities' },
+    { title: 'Expert Mentorship', description: 'Guidance from industry professionals' },
+    { title: 'Career Support', description: 'Placement assistance and job referrals' },
+    { title: 'Verified Outcomes', description: 'Transparent tracking of placements' },
+    { title: 'Flexible Programs', description: 'Options for every academic schedule' },
+    { title: 'Trusted Network', description: 'Connected with 500+ colleges' },
+  ];
+
+  return (
+    <section className="py-20 border-t border-white/10">
+      <div className="container mx-auto px-4">
+        <motion.div className="text-center mb-16">
+          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Why Choose Us</p>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground">What Makes UpEducative Different</h2>
+        </motion.div>
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reasons.map((reason, i) => (
+            <motion.div key={i} className="glass rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+              <h3 className="text-lg font-semibold text-foreground mb-3">{reason.title}</h3>
+              <p className="text-foreground/70">{reason.description}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

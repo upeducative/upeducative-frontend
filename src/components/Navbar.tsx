@@ -50,7 +50,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Desktop Navbar */}
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled ? 'glass' : 'bg-transparent'
@@ -61,25 +60,27 @@ export default function Navbar() {
       >
         <div className="container mx-auto h-[92px] px-8 flex items-center justify-between">
 
-          {/* Logo */}
-          <Link to={ROUTES.home}>
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <img
-                src={logo}
-                alt="UpEducative"
-                className="h-14 md:h-16 w-auto object-contain select-none"
-                draggable={false}
-              />
-            </motion.div>
-          </Link>
+          {/* Logo Section (Red Mark Shift) */}
+          <div className="flex items-center flex-1">
+            <Link to={ROUTES.home}>
+              <motion.div
+                className="cursor-pointer ml-8"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <img
+                  src={logo}
+                  alt="UpEducative"
+                  className="h-14 md:h-16 w-auto object-contain select-none"
+                  draggable={false}
+                />
+              </motion.div>
+            </Link>
+          </div>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu (Green Mark Shift) */}
           <motion.div
-            className="hidden md:flex items-center gap-3"
+            className="hidden md:flex items-center gap-6 mr-16"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -123,7 +124,6 @@ export default function Navbar() {
               Get Started
             </MotionLink>
 
-            {/* Mobile Menu Button */}
             <motion.button
               className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors"
               onClick={() => setIsOpen(!isOpen)}
@@ -131,11 +131,7 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               aria-label="Toggle menu"
             >
-              {isOpen ? (
-                <X className="w-6 h-6 text-foreground" />
-              ) : (
-                <Menu className="w-6 h-6 text-foreground" />
-              )}
+              {isOpen ? <X className="w-6 h-6 text-foreground" /> : <Menu className="w-6 h-6 text-foreground" />}
             </motion.button>
           </motion.div>
         </div>
@@ -143,36 +139,18 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <motion.div
-        className={`fixed inset-0 top-[92px] z-40 glass md:hidden ${
-          isOpen ? 'block' : 'hidden'
-        }`}
+        className={`fixed inset-0 top-[92px] z-40 glass md:hidden ${isOpen ? 'block' : 'hidden'}`}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -20 }}
         transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-4 py-8 space-y-4">
-
-          {/* Mobile Logo */}
           <div className="pb-4 border-b border-white/10">
-            <img
-              src={logo}
-              alt="UpEducative"
-              className="h-[72px] w-auto object-contain"
-            />
+            <img src={logo} alt="UpEducative" className="h-[72px] w-auto object-contain" />
           </div>
-
           {navItems.map((item, i) => (
-            <motion.div
-              key={item.href}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <Link
-                to={item.href}
-                className="block px-4 py-3 rounded-lg text-foreground hover:bg-white/10 hover:text-accent transition-all duration-300"
-                onClick={() => setIsOpen(false)}
-              >
+            <motion.div key={item.href} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }}>
+              <Link to={item.href} className="block px-4 py-3 rounded-lg text-foreground hover:bg-white/10 hover:text-accent transition-all duration-300" onClick={() => setIsOpen(false)}>
                 {item.label}
               </Link>
             </motion.div>
