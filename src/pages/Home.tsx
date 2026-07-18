@@ -40,7 +40,7 @@ const staggerContainer: Variants = {
 } as const;
 
 // ============================================================================
-// TRAINING TRACKS SECTION
+// TRAINING PROGRAMS SECTION
 // ============================================================================
 function TrainingTracksSection() {
   const programs = [
@@ -74,8 +74,8 @@ function TrainingTracksSection() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Training Tracks</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Choose Your Specialization</h2>
+          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Training Programs</p>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Choose Your Specialization</h2>
         </motion.div>
 
         <motion.div
@@ -135,15 +135,9 @@ function ProgramsSection() {
   return (
     <section className="py-20 border-t border-border/60 dark:border-white/10 bg-background/50">
       <div className="container mx-auto px-4">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={fadeInUp}
-          className="text-center mb-16"
-        >
-          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Available Programs</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Choose Your Path</h2>
+        <motion.div className="text-center mb-16">
+          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Career Opportunities</p>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Choose Your Path</h2>
         </motion.div>
         
         <motion.div 

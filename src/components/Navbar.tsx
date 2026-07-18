@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Menu, X, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants/routes';
 import { BRANDING } from '@/constants/branding';
@@ -65,7 +65,7 @@ export default function Navbar() {
         <div className="container mx-auto h-[92px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
           {/* Logo Section */}
-          <div className="flex items-center flex-shrink-0">
+          <div className="flex items-center flex-1">
             <Link to={ROUTES.home}>
               <motion.div
                 className="cursor-pointer"
@@ -103,14 +103,18 @@ export default function Navbar() {
             ))}
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* Search and CTA Buttons */}
           <motion.div
             className="flex items-center gap-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <ThemeToggle />
+            {/* Search Box */}
+            <button className="hidden sm:flex items-center gap-2 h-12 px-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-white/80 hover:text-white hover:border-sky-400/40 transition-all duration-300">
+              <Search className="w-4 h-4" />
+              <span>Search</span>
+            </button>
 
             <MotionLink
               to={ROUTES.login}
