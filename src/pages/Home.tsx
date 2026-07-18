@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle, Star, Target, FileText, Sparkles, BrainCircuit } from 'lucide-react';
+import { CheckCircle, Star, FileText, Sparkles, BrainCircuit } from 'lucide-react';
 import Layout from '@/layouts/Layout';
 import HeroSection from '@/components/ui/hero-section';
 
@@ -322,6 +322,7 @@ function FAQSection() {
           ))}
         </motion.div>
       </div>
+
     </section>
   );
 }
