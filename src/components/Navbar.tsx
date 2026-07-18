@@ -26,7 +26,6 @@ export default function Navbar() {
     { label: 'Programs', href: ROUTES.internships },
     { label: 'Contact', href: ROUTES.contact },
     { label: 'Carrers', href: ROUTES.training },
-    a7ab8c4 (Updated Navbar with Search box and layout)
   ];
 
   const containerVariants = {
