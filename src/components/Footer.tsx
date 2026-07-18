@@ -125,7 +125,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-sm text-foreground/60">Email</p>
-              <p className="text-foreground font-medium">hello@upeducative.com</p>
+              <p className="text-foreground font-medium">upeducative@gmail.com</p>
             </div>
           </motion.div>
 
@@ -141,7 +141,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-sm text-foreground/60">Phone</p>
-              <p className="text-foreground font-medium">+91 9876 543 210</p>
+              <p className="text-foreground font-medium">+917731070103</p>
             </div>
           </motion.div>
 
@@ -157,7 +157,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-sm text-foreground/60">Address</p>
-              <p className="text-foreground font-medium">Bangalore, India</p>
+              <p className="text-foreground font-medium">Patna, India</p>
             </div>
           </motion.div>
         </motion.div>
