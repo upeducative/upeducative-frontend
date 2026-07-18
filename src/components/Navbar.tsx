@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants/routes';
 import logo from '@/assets/logo.png';
@@ -23,7 +23,12 @@ export default function Navbar() {
   const navItems = [
     { label: 'Home', href: ROUTES.home },
     { label: 'About', href: ROUTES.about },
+<<<<<<< HEAD
     { label: 'Programs', href: ROUTES.internships },
+=======
+    { label: 'Career', href: ROUTES.internships },
+    { label: 'Programs', href: ROUTES.training },
+>>>>>>> a7ab8c4 (Updated Navbar with Search box and layout)
     { label: 'Contact', href: ROUTES.contact },
     { label: 'Carrers', href: ROUTES.training },
   ];
@@ -60,7 +65,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto h-[92px] px-8 flex items-center justify-between">
 
-          {/* Logo Section (Red Mark Shift) */}
+          {/* Logo Section */}
           <div className="flex items-center flex-1">
             <Link to={ROUTES.home}>
               <motion.div
@@ -78,7 +83,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Menu (Green Mark Shift) */}
+          {/* Desktop Menu */}
           <motion.div
             className="hidden md:flex items-center gap-6 mr-16"
             variants={containerVariants}
@@ -99,13 +104,19 @@ export default function Navbar() {
             ))}
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* Search and CTA Buttons */}
           <motion.div
             className="flex items-center gap-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
+            {/* Search Box */}
+            <button className="hidden sm:flex items-center gap-2 h-12 px-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-white/80 hover:text-white hover:border-sky-400/40 transition-all duration-300">
+              <Search className="w-4 h-4" />
+              <span>Search</span>
+            </button>
+
             <MotionLink
               to={ROUTES.login}
               className="hidden sm:inline-flex items-center justify-center h-12 px-7 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 hover:border-sky-400/40 transition-all duration-300"
