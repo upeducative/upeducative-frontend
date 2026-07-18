@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants/routes';
-import logo from '@/assets/logo.png';
+import { BRANDING } from '@/constants/branding';
+import ThemeToggle from '@/components/ui/theme-toggle';
+
 
 const MotionLink = motion(Link);
 
@@ -25,7 +27,7 @@ export default function Navbar() {
     { label: 'About', href: ROUTES.about },
     { label: 'Programs', href: ROUTES.internships },
     { label: 'Contact', href: ROUTES.contact },
-    { label: 'Carrers', href: ROUTES.training },
+    { label: 'Careers', href: ROUTES.training }, // Fixed typo "Carrers"
   ];
 
   const containerVariants = {
@@ -51,36 +53,38 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'glass' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+          isScrolled 
+            ? 'glass bg-background/80 border-border/40 backdrop-blur-md shadow-sm' 
+            : 'bg-transparent border-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="container mx-auto h-[92px] px-8 flex items-center justify-between">
+        <div className="container mx-auto h-[92px] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
-          {/* Logo Section (Red Mark Shift) */}
-          <div className="flex items-center flex-1">
+          {/* Logo Section */}
+          <div className="flex items-center flex-shrink-0">
             <Link to={ROUTES.home}>
               <motion.div
-                className="cursor-pointer ml-8"
+                className="cursor-pointer"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <img
-                  src={logo}
-                  alt="UpEducative"
-                  className="h-14 md:h-16 w-auto object-contain select-none"
+                  src={BRANDING.logo}
+                  alt={BRANDING.logoAlt}
+                  className="h-14 md:h-16 w-auto object-contain select-none dark:invert-0"
                   draggable={false}
                 />
               </motion.div>
             </Link>
           </div>
 
-          {/* Desktop Menu (Green Mark Shift) */}
+          {/* Desktop Menu */}
           <motion.div
-            className="hidden md:flex items-center gap-6 mr-16"
+            className="hidden md:flex items-center gap-1 lg:gap-2 mx-auto"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -89,7 +93,7 @@ export default function Navbar() {
               <motion.div key={item.href} variants={itemVariants}>
                 <MotionLink
                   to={item.href}
-                  className="px-5 py-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium tracking-wide inline-block"
+                  className="px-4 py-2 rounded-full text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium tracking-wide inline-block"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -106,28 +110,30 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
+            <ThemeToggle />
+
             <MotionLink
               to={ROUTES.login}
-              className="hidden sm:inline-flex items-center justify-center h-12 px-7 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 hover:border-sky-400/40 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="hidden sm:inline-flex items-center justify-center h-11 px-5 rounded-full border border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-300 font-medium text-sm"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Sign In
             </MotionLink>
 
             <MotionLink
               to={ROUTES.signup}
-              className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-white text-[#081120] font-semibold hover:scale-105 hover:shadow-[0_0_30px_rgba(56,189,248,0.35)] transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 text-sm"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Get Started
             </MotionLink>
 
             <motion.button
-              className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors"
+              className="md:hidden p-2 rounded-full hover:bg-muted transition-colors"
               onClick={() => setIsOpen(!isOpen)}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Toggle menu"
             >
@@ -137,26 +143,40 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
-      <motion.div
-        className={`fixed inset-0 top-[92px] z-40 glass md:hidden ${isOpen ? 'block' : 'hidden'}`}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -20 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="container mx-auto px-4 py-8 space-y-4">
-          <div className="pb-4 border-b border-white/10">
-            <img src={logo} alt="UpEducative" className="h-[72px] w-auto object-contain" />
-          </div>
-          {navItems.map((item, i) => (
-            <motion.div key={item.href} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }}>
-              <Link to={item.href} className="block px-4 py-3 rounded-lg text-foreground hover:bg-white/10 hover:text-accent transition-all duration-300" onClick={() => setIsOpen(false)}>
-                {item.label}
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+      {/* Mobile Menu with Framer Motion AnimatePresence */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed inset-0 top-[92px] z-40 bg-background/95 backdrop-blur-lg border-b border-border md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="container mx-auto px-6 py-6 space-y-3">
+              <div className="pb-4 border-b border-border">
+                <img src={BRANDING.logo} alt={BRANDING.logoAlt} className="h-14 w-auto object-contain" />
+              </div>
+              {navItems.map((item, i) => (
+                <motion.div 
+                  key={item.href} 
+                  initial={{ opacity: 0, x: -10 }} 
+                  animate={{ opacity: 1, x: 0 }} 
+                  transition={{ delay: i * 0.05 }}
+                >
+                  <Link 
+                    to={item.href} 
+                    className="block px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted font-medium transition-all duration-200" 
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

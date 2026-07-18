@@ -16,7 +16,7 @@ export default function Internships() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden aurora pt-20">
+    <section className="relative flex items-center justify-center overflow-hidden aurora pt-20">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
       </div>

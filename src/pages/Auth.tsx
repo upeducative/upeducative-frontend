@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { BRANDING } from '@/constants/branding';
 
 /**
  * Authentication Pages - LOCKED DESIGN SYSTEM
@@ -27,7 +28,7 @@ export function LoginPage() {
           <div className="w-12 h-12 bg-gradient-to-br from-accent via-accent to-accent/70 rounded-lg flex items-center justify-center mx-auto mb-4 glow-accent">
             <span className="text-foreground font-bold text-lg">U</span>
           </div>
-          <h1 className="text-3xl font-semibold text-foreground">UpEducative</h1>
+          <h1 className="text-3xl font-semibold text-foreground">{BRANDING.name}</h1>
           <p className="text-foreground/70 mt-2">Sign in to your account</p>
         </div>
 
@@ -109,7 +110,7 @@ export function SignupPage() {
             <span className="text-foreground font-bold text-lg">U</span>
           </div>
           <h1 className="text-3xl font-semibold text-foreground">Create Account</h1>
-          <p className="text-foreground/70 mt-2">Join UpEducative today</p>
+          <p className="text-foreground/70 mt-2">Join {BRANDING.name} today</p>
         </div>
 
         <div className="glass rounded-3xl p-8 border border-white/20">

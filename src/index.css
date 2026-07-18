@@ -3,6 +3,7 @@
 @import "./styles/scrollbar.css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 /*
   Tailwind v4 is CSS-first: utilities like bg-background, text-foreground,
@@ -62,108 +63,149 @@
 
 :root {
   /*
-    LOCKED DESIGN SYSTEM — sourced 1:1 from the Hero Section.
-    "Deep Space Navy" background (#050816) + "Sky Blue" accent (sky-400/blue-600),
-    white primary actions, and white-opacity glassmorphism throughout.
-    Every page in the app inherits this palette through these tokens —
-    do not reintroduce the old green/gold values anywhere.
+    LIGHT MODE — default theme for the app.
+    Light background, dark foreground, and softened glass surfaces.
   */
 
-  /* Primary: Hero's white CTA button */
-  --primary: #ffffff;
-  --primary-foreground: #050816;
+  /* Primary: white CTA button on light mode */
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
 
   /* Sidebar */
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #050816;
+  --sidebar-primary: #f8fafc;
+  --sidebar-primary-foreground: #0f172a;
 
-  /* Chart Colors: White -> Sky -> Blue gradient (mirrors Hero's gradient text/progress bar) */
-  --chart-1: #7dd3fc;
-  --chart-2: #38bdf8;
-  --chart-3: #0ea5e9;
+  /* Chart Colors: blue gradient for visual consistency */
+  --chart-1: #0284c7;
+  --chart-2: #0ea5e9;
+  --chart-3: #3b82f6;
   --chart-4: #2563eb;
-  --chart-5: #1e3a8a;
+  --chart-5: #1e40af;
 
   /* Radius: soft, modern, matches Hero's rounded-2xl/3xl/full language */
   --radius: 1rem;
 
-  /* Background: Hero's exact Deep Space Navy */
-  --background: #050816;
-  --foreground: #ffffff;
+  /* Background: light page surface */
+  --background: #f8fafc;
+  --foreground: #0f172a;
 
-  /* Card: Hero's glass card treatment (bg-white/6) */
-  --card: rgba(255, 255, 255, 0.06);
-  --card-foreground: #ffffff;
+  /* Card: soft white glass treatment */
+  --card: rgba(255, 255, 255, 0.92);
+  --card-foreground: #0f172a;
 
-  /* Popover: near-opaque navy glass for legible dropdown/tooltip content */
-  --popover: rgba(8, 12, 28, 0.96);
-  --popover-foreground: #ffffff;
+  /* Popover: light surface for dropdown/tooltip content */
+  --popover: rgba(255, 255, 255, 0.98);
+  --popover-foreground: #0f172a;
 
-  /* Secondary: Hero's badge/secondary-button surface (bg-white/5) */
-  --secondary: rgba(255, 255, 255, 0.05);
-  --secondary-foreground: #bfdbfe;
+  /* Secondary: light muted surface */
+  --secondary: rgba(15, 23, 42, 0.04);
+  --secondary-foreground: #64748b;
 
-  /* Muted: Hero's blue-200/60 secondary text treatment */
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(191, 219, 254, 0.6);
+  /* Muted: subtle text on light backgrounds */
+  --muted: rgba(15, 23, 42, 0.08);
+  --muted-foreground: rgba(15, 23, 42, 0.6);
 
-  /* Accent: Hero's signature Sky Blue highlight color */
+  /* Accent: brand sky blue highlight */
   --accent: #38bdf8;
-  --accent-foreground: #050816;
+  --accent-foreground: #0f172a;
 
-  /* Destructive: standard semantic error red (form validation, etc.) */
+  /* Destructive: standard semantic red */
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  /* Border: Hero's most common border (border-white/10) */
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.08);
+  /* Border: soft divider on light surface */
+  --border: rgba(15, 23, 42, 0.08);
+  --input: rgba(15, 23, 42, 0.08);
   --ring: #38bdf8;
 
   /* Sidebar */
-  --sidebar: #050816;
-  --sidebar-foreground: #ffffff;
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
   --sidebar-accent: #38bdf8;
-  --sidebar-accent-foreground: #050816;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: rgba(15, 23, 42, 0.08);
   --sidebar-ring: #38bdf8;
+  --glass: rgba(15, 23, 42, 0.04);
+  --glass-border: rgba(15, 23, 42, 0.08);
+}
+
+.light {
+  /* Light theme overrides (same as default root values) */
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
+  --sidebar-primary: #f8fafc;
+  --sidebar-primary-foreground: #0f172a;
+  --chart-1: #0284c7;
+  --chart-2: #0ea5e9;
+  --chart-3: #3b82f6;
+  --chart-4: #2563eb;
+  --chart-5: #1e40af;
+  --radius: 1rem;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: rgba(255, 255, 255, 0.92);
+  --card-foreground: #0f172a;
+  --popover: rgba(255, 255, 255, 0.98);
+  --popover-foreground: #0f172a;
+  --secondary: rgba(15, 23, 42, 0.04);
+  --secondary-foreground: #64748b;
+  --muted: rgba(15, 23, 42, 0.08);
+  --muted-foreground: rgba(15, 23, 42, 0.6);
+  --accent: #38bdf8;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(15, 23, 42, 0.08);
+  --input: rgba(15, 23, 42, 0.08);
+  --ring: #38bdf8;
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-accent: #38bdf8;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: rgba(15, 23, 42, 0.08);
+  --sidebar-ring: #38bdf8;
+  --glass: rgba(15, 23, 42, 0.04);
+  --glass-border: rgba(15, 23, 42, 0.08);
 }
 
 .dark {
-  /* Dark mode is the default for this design system (mirrors :root) */
   --primary: #ffffff;
   --primary-foreground: #050816;
   --sidebar-primary: #ffffff;
   --sidebar-primary-foreground: #050816;
-  --background: #050816;
-  --foreground: #ffffff;
-  --card: rgba(255, 255, 255, 0.06);
-  --card-foreground: #ffffff;
-  --popover: rgba(8, 12, 28, 0.96);
-  --popover-foreground: #ffffff;
-  --secondary: rgba(255, 255, 255, 0.05);
-  --secondary-foreground: #bfdbfe;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(191, 219, 254, 0.6);
-  --accent: #38bdf8;
-  --accent-foreground: #050816;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: #38bdf8;
   --chart-1: #7dd3fc;
   --chart-2: #38bdf8;
   --chart-3: #0ea5e9;
   --chart-4: #2563eb;
   --chart-5: #1e3a8a;
+  --radius: 1rem;
+  --background: #050816;
+  --foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-foreground: #ffffff;
+  --popover: rgba(8, 12, 28, 0.96);
+  --popover-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: #bfdbfe;
+  --muted: rgba(255, 255, 255, 0.08);
+  --muted-foreground: rgba(191, 219, 254, 0.6);
+  --accent: #38bdf8;
+  --accent-foreground: #050816;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #38bdf8;
   --sidebar: #050816;
   --sidebar-foreground: #ffffff;
   --sidebar-accent: #38bdf8;
   --sidebar-accent-foreground: #050816;
   --sidebar-border: rgba(255, 255, 255, 0.1);
   --sidebar-ring: #38bdf8;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
+
 
 @layer base {
   * {
@@ -234,6 +276,42 @@
 
   .glow-accent-lg {
     @apply shadow-[0_0_60px_rgba(56,189,248,0.4)];
+  }
+
+  .dark .bg-white {
+    background-color: var(--card) !important;
+  }
+
+  .dark .bg-white\/5 {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .dark .bg-white\/6 {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+  }
+
+  .dark .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .dark .border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .dark .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .dark .text-\[\#050816\] {
+    color: var(--foreground) !important;
+  }
+
+  .dark .bg-\[\#050816\] {
+    background-color: var(--background) !important;
+  }
+
+  .dark .text-blue-200\/70 {
+    color: rgba(191, 219, 254, 0.7) !important;
   }
 
   /* AURORA EFFECTS — recolored to Hero's white -> sky -> blue radial glow */

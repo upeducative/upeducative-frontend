@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Heart, Lightbulb, Users } from 'lucide-react';
 import Layout from '@/layouts/Layout';
+import { BRANDING } from '@/constants/branding';
 
 /**
  * About Page - LOCKED DESIGN SYSTEM
@@ -22,7 +23,7 @@ export default function About() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden aurora pt-20">
+    <section className="relative flex items-center justify-center overflow-hidden aurora pt-20">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
       </div>
@@ -33,7 +34,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl text-foreground mb-6">About UpEducative</h1>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl text-foreground mb-6">About {BRANDING.name}</h1>
           <p className="text-xl text-foreground/70 max-w-2xl mx-auto">We're building the future of technical education by connecting ambitious students with premium opportunities.</p>
         </motion.div>
       </div>
@@ -109,7 +110,7 @@ function WhyUpEducativeSection() {
       <div className="container mx-auto px-4">
         <motion.div className="text-center mb-16">
           <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Why Choose Us</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">What Makes UpEducative Different</h2>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground">What Makes {BRANDING.name} Different</h2>
         </motion.div>
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((reason, i) => (

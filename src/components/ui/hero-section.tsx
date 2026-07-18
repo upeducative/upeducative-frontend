@@ -3,7 +3,7 @@ import studentImage from "@/assets/student.png";
 
 export default function HeroSection() {
   return (
-    <div className="relative w-full bg-[#050816] text-white overflow-hidden font-sans">
+    <div className="relative w-full bg-background text-foreground overflow-hidden font-sans">
       <style>{`
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -49,15 +49,16 @@ export default function HeroSection() {
           
           {/* Left Column (Text) */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-8 pt-8">
-            <h1 className="animate-fade-in delay-100 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tighter leading-[0.9]">
-              Launch your career
-              <br />
-              <span className="bg-gradient-to-br from-white via-blue-200 to-sky-400 bg-clip-text text-transparent">
-                with India's top
-              </span>
-              <br />
-              internships.
-            </h1>
+           <h1 className="animate-fade-in delay-100 text-5xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[0.95] text-slate-900 dark:text-white">
+  Build real skills.
+  <br />
+  <span className="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 dark:from-white dark:via-blue-200 dark:to-sky-400 bg-clip-text text-transparent">
+    Get hired with UpEducative.
+  </span>
+</h1>
+<p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl font-medium">
+  Skip the generic tutorials. Master high-demand tech stacks through verified, stipend-paying Indian internships and structured training tracks.
+</p>
 
             <p className="animate-fade-in delay-200 max-w-xl text-lg text-blue-200/70 leading-relaxed">
               Partnered with 150+ top colleges to bring you premium internships and expert mentorship. <br className="hidden sm:block" />
@@ -66,12 +67,12 @@ export default function HeroSection() {
 
             <div className="animate-fade-in delay-300 flex flex-col sm:flex-row gap-4">
               <button className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#050816] transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-sky-400/50 active:scale-[0.98]">
-                View Portfolio
+                Explore more
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
               <button className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-sky-400/30">
                 <Play className="w-4 h-4 fill-current" />
-                Watch Showreel
+                Watch
               </button>
             </div>
           </div>

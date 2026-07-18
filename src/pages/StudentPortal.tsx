@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LogOut, Menu, X, Home, User, Briefcase, Award, FileText, Bell, Download, TrendingUp } from 'lucide-react';
+import { BRANDING } from '@/constants/branding';
 
 /**
  * Student Portal Dashboard - LOCKED DESIGN SYSTEM
@@ -41,7 +42,7 @@ export default function StudentPortal() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent via-accent to-accent/70 flex items-center justify-center glow-accent-sm">
                 <span className="text-foreground font-bold">U</span>
               </div>
-              <span className="font-bold text-lg text-foreground">UpEducative</span>
+              <span className="font-bold text-lg text-foreground">{BRANDING.name}</span>
             </div>
           )}
           <motion.button

@@ -1,10 +1,11 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { CheckCircle, Star, FileText, Sparkles, BrainCircuit } from 'lucide-react';
 import Layout from '@/layouts/Layout';
 import HeroSection from '@/components/ui/hero-section';
+import { BRANDING } from '@/constants/branding';
 
 /**
- * UpEducative Homepage - LOCKED DESIGN SYSTEM
+ * UpEducative Homepage - FIXED CONTRAST & INTERACTIONS
  */
 
 export default function Home() {
@@ -19,6 +20,24 @@ export default function Home() {
     </Layout>
   );
 }
+
+// Animation Presets
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring' as const, stiffness: 100, damping: 15 }
+  }
+} as const;
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 }
+  }
+} as const;
 
 // ============================================================================
 // TRAINING TRACKS SECTION
@@ -46,50 +65,50 @@ function TrainingTracksSection() {
   ];
 
   return (
-    <section className="py-20 border-t border-white/10">
+    <section className="py-20 border-t border-border/60 dark:border-white/10 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeInUp}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Training Tracks</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Choose Your Specialization</h2>
+          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Training Tracks</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Choose Your Specialization</h2>
         </motion.div>
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ staggerChildren: 0.15, delayChildren: 0.2 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          variants={staggerContainer}
         >
           {programs.map((program, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="glass rounded-3xl p-8 hover:bg-white/10 transition-all duration-300 flex flex-col h-full"
+              variants={fadeInUp}
+              whileHover="hover"
+              whileTap="tap"
+              custom={i}
+              className="glass border border-border/50 dark:border-white/10 rounded-3xl p-8 backdrop-blur-md bg-card/60 dark:bg-white/5 transition-colors duration-300 flex flex-col h-full group"
             >
               <div className="flex-grow">
-                <h3 className="text-2xl font-semibold text-foreground mb-2">{program.title}</h3>
-                <p className="text-accent font-semibold mb-4">{program.duration}</p>
-                <p className="text-foreground/70 mb-6">{program.description}</p>
+                <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">{program.title}</h3>
+                <p className="text-primary dark:text-sky-400 font-semibold mb-4 text-sm tracking-wide">{program.duration}</p>
+                <p className="text-muted-foreground mb-6 leading-relaxed">{program.description}</p>
                 <div className="space-y-3 mb-8">
                   {program.topics.map((topic, j) => (
                     <div key={j} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                      <span className="text-foreground/80">{topic}</span>
+                      <CheckCircle className="w-5 h-5 text-primary dark:text-sky-400 flex-shrink-0" />
+                      <span className="text-foreground/90 font-medium text-sm">{topic}</span>
                     </div>
                   ))}
                 </div>
               </div>
               <motion.button
-                className="w-full py-3 rounded-full bg-white text-[#050816] font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-sky-400/50 mt-auto"
+                className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-bold transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/20 mt-auto shadow-sm"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -114,29 +133,56 @@ function ProgramsSection() {
   ];
 
   return (
-    <section className="py-20 border-t border-white/10">
+    <section className="py-20 border-t border-border/60 dark:border-white/10 bg-background/50">
       <div className="container mx-auto px-4">
-        <motion.div className="text-center mb-16">
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Available Programs</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Choose Your Path</h2>
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeInUp}
+          className="text-center mb-16"
+        >
+          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Available Programs</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Choose Your Path</h2>
         </motion.div>
-        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          variants={staggerContainer}
+        >
           {programs.map((program, i) => (
-            <motion.div key={i} className="glass rounded-3xl p-8 hover:bg-white/10 transition-all duration-300">
-              <h3 className="text-2xl font-semibold text-foreground mb-4">{program.title}</h3>
-              <div className="space-y-3 mb-8">
-                <p className="text-foreground/70"><span className="text-accent font-semibold">Duration:</span> {program.duration}</p>
-                <p className="text-foreground/70"><span className="text-accent font-semibold">Stipend:</span> {program.stipend}</p>
+            <motion.div 
+              key={i} 
+              variants={fadeInUp}
+              whileHover="hover"
+              whileTap="tap"
+              className="glass border border-border/50 dark:border-white/10 rounded-3xl p-8 backdrop-blur-md bg-card/60 dark:bg-white/5 transition-colors duration-300 flex flex-col justify-between group"
+            >
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-200">{program.title}</h3>
+                <div className="space-y-2.5 p-4 rounded-2xl bg-muted/60 dark:bg-white/5 border border-border/40 mb-6">
+                  <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">Duration:</span> {program.duration}</p>
+                  <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">Stipend:</span> {program.stipend}</p>
+                </div>
+                <div className="space-y-3 mb-8">
+                  {program.features.map((feature, j) => (
+                    <div key={j} className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-primary dark:text-sky-400 flex-shrink-0" />
+                      <span className="text-foreground/90 text-sm font-medium">{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="space-y-3 mb-8">
-                {program.features.map((feature, j) => (
-                  <div key={j} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="text-foreground/80">{feature}</span>
-                  </div>
-                ))}
-              </div>
-              <motion.button className="w-full py-3 rounded-full bg-white text-[#050816] font-semibold transition-all hover:shadow-lg hover:shadow-sky-400/50">Apply Now</motion.button>
+              <motion.button 
+                className="w-full py-3.5 rounded-full bg-primary text-primary-foreground font-bold transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/20 shadow-sm"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Apply Now
+              </motion.button>
             </motion.div>
           ))}
         </motion.div>
@@ -146,54 +192,69 @@ function ProgramsSection() {
 }
 
 // ============================================================================
-// RESUME BUILDER SECTION
+// PLACEMENT SUPPORT SECTION (RESUME BUILDER)
 // ============================================================================
 function PlacementSupportSection() {
   return (
-    <section className="py-20 border-t border-white/10">
+    <section className="py-20 border-t border-border/60 dark:border-white/10 bg-background">
       <div className="container mx-auto px-4">
-        <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Resume Builder</p>
-            <h2 className="text-4xl md:text-5xl font-medium text-foreground mb-6">No resume? No problem.</h2>
-            <p className="text-lg text-foreground/70 mb-8">Let us help you create one or improve the one you've got with our intelligent tools.</p>
-            <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.p variants={fadeInUp} className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Resume Builder</motion.p>
+            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">No resume? No problem.</motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">Let us help you create one or improve the one you've got with our intelligent tools.</motion.p>
+            <motion.div variants={fadeInUp} className="space-y-4">
               {[
                 { icon: Sparkles, text: 'AI-powered resume builder' },
                 { icon: BrainCircuit, text: 'Intelligent feedback engine' },
                 { icon: CheckCircle, text: 'Optimized for freshers' }
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <item.icon className="w-6 h-6 text-accent flex-shrink-0" />
-                  <span className="text-foreground/80">{item.text}</span>
+                  <item.icon className="w-5 h-5 text-primary dark:text-sky-400 flex-shrink-0" />
+                  <span className="text-foreground/90 font-medium">{item.text}</span>
                 </div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <motion.div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-[28px] shadow-2xl">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl border border-border/80 dark:border-white/10 bg-card/70 dark:bg-white/5 p-8 backdrop-blur-[28px] shadow-2xl"
+          >
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10 ring-1 ring-accent/20">
-                  <FileText className="h-7 w-7 text-accent" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20">
+                  <FileText className="h-7 w-7 text-primary dark:text-sky-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">Build Your Professional Resume</h3>
-                  <p className="text-sm text-blue-200/60">Ready in minutes</p>
+                  <h3 className="text-xl font-bold text-foreground">Build Your Professional Resume</h3>
+                  <p className="text-sm text-muted-foreground">Ready in minutes</p>
                 </div>
               </div>
               
-              <p className="text-foreground/70 mb-8">
+              <p className="text-muted-foreground mb-8 leading-relaxed">
                 Choose from ATS-friendly templates designed to get you noticed by top recruiters.
               </p>
 
-              <button className="w-full py-4 rounded-xl bg-accent text-[#050816] font-semibold hover:bg-accent/90 transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)]">
+              <motion.button 
+                className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold shadow-md transition-shadow hover:shadow-lg hover:shadow-primary/20"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+              >
                 Build my resume →
-              </button>
+              </motion.button>
             </div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[50px]" />
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-[50px] pointer-events-none" />
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -204,68 +265,67 @@ function PlacementSupportSection() {
 // ============================================================================
 function TestimonialsSection() {
   const testimonials = [
-    {
-      name: 'Priya Sharma',
-      role: 'Engineering Student',
-      company: 'Google Internship',
-      text: 'UpEducative helped me land my dream internship at Google. The platform is intuitive and the support team is amazing.',
-      rating: 5,
-    },
-    {
-      name: 'Arjun Patel',
-      role: 'B.Tech Student',
-      company: 'Microsoft Internship',
-      text: 'The interview preparation and mentorship I received was invaluable. Highly recommended for any student.',
-      rating: 5,
-    },
-    {
-      name: 'Neha Gupta',
-      role: 'Diploma Student',
-      company: 'Amazon Internship',
-      text: 'Best platform for internships. Great opportunities and excellent support throughout the process.',
-      rating: 5,
-    },
-  ];
+  {
+    name: 'Priya Sharma',
+    role: 'B.Tech CSE Student',
+    company: 'Tier-3 College Success',
+    text: `Coming from a tier-3 college, I had zero guidance on how to clear resume screens. The step-by-step training modules on ${BRANDING.name} showed me exactly how to fill my portfolio gaps. I didn't just get an internship; I gained the actual technical confidence I was missing in class.`,
+    rating: 5,
+  },
+  {
+    name: 'Arjun Patel',
+    role: 'ECE Undergrad',
+    company: 'Core Electronics to IT Shift',
+    text: `The hardest part of shifting from ECE to web dev was trying to build structured projects on my own. The structured tracks here kept me accountable. The mock interview preparation was the exact turning point that helped me handle tough technical rounds without panicking.`,
+    rating: 5,
+  },
+  {
+    name: 'Neha Gupta',
+    role: 'MCA Student',
+    company: 'Non-Metro City Placement',
+    text: `I used to spend hours sending out cold applications on LinkedIn with zero replies. Switching to this platform gave me a direct roadmap. The resume analyzer alone completely fixed how I presented my freelance projects, and I started getting callbacks within two weeks.`,
+    rating: 5,
+  },
+];
 
   return (
-    <section className="py-20 border-t border-white/10">
+    <section className="py-20 border-t border-border/60 dark:border-white/10 bg-background/50">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeInUp}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Success Stories</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">What Our Students Say</h2>
+          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Success Stories</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">What Our Students Say</h2>
         </motion.div>
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ staggerChildren: 0.15, delayChildren: 0.2 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          variants={staggerContainer}
         >
           {testimonials.map((testimonial, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="glass rounded-3xl p-8"
+              variants={fadeInUp}
+              whileHover="hover"
+              whileTap="tap"
+              className="glass border border-border/50 dark:border-white/10 rounded-3xl p-8 bg-card/60 dark:bg-white/5 backdrop-blur-md transition-all duration-300"
             >
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-5">
                 {[...Array(testimonial.rating)].map((_, j) => (
-                  <Star key={j} className="w-5 h-5 text-accent fill-accent" />
+                  <Star key={j} className="w-4 h-4 text-amber-500 fill-amber-500" />
                 ))}
               </div>
-              <p className="text-foreground/80 mb-6 leading-relaxed">{testimonial.text}</p>
-              <div>
-                <p className="font-semibold text-foreground">{testimonial.name}</p>
-                <p className="text-sm text-foreground/60">{testimonial.role} • {testimonial.company}</p>
+              <p className="text-foreground/90 mb-6 leading-relaxed font-normal text-[15px]">"{testimonial.text}"</p>
+              <div className="pt-4 border-t border-border/40">
+                <p className="font-bold text-foreground text-sm">{testimonial.name}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{testimonial.role} • <span className="text-primary dark:text-sky-400 font-medium">{testimonial.company}</span></p>
               </div>
             </motion.div>
           ))}
@@ -287,42 +347,42 @@ function FAQSection() {
   ];
 
   return (
-    <section className="py-20 border-t border-white/10">
+    <section className="py-20 border-t border-border/60 dark:border-white/10 bg-background">
       <div className="container mx-auto px-4 max-w-3xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeInUp}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Questions?</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Frequently Asked Questions</h2>
+          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-4">Questions?</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Frequently Asked Questions</h2>
         </motion.div>
 
         <motion.div
           className="space-y-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
-          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          variants={staggerContainer}
         >
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="glass rounded-2xl p-6"
+              variants={fadeInUp}
+              whileHover={{ scale: 1.005 }}
+              className="glass border border-border/50 dark:border-white/10 rounded-2xl p-6 bg-card/60 dark:bg-white/5 backdrop-blur-md shadow-sm transition-colors duration-200"
             >
-              <h3 className="font-semibold text-foreground mb-3">{faq.q}</h3>
-              <p className="text-foreground/70">{faq.a}</p>
+              <h3 className="font-bold text-foreground mb-2 text-base flex items-start gap-2">
+                <span className="text-primary font-mono">Q.</span>
+                {faq.q}
+              </h3>
+              <p className="text-muted-foreground text-sm pl-5 leading-relaxed">{faq.a}</p>
             </motion.div>
           ))}
         </motion.div>
       </div>
-
     </section>
   );
 }

@@ -5,6 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { BRANDING } from '@/constants/branding';
 
 type Theme = "dark" | "light" | "system";
 
@@ -37,7 +38,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 export function ThemeProvider({
   children,
   defaultTheme = "dark",
-  storageKey = "upeducative-ui-theme",
+  storageKey = BRANDING.themeStorageKey,
   switchable = false,
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {

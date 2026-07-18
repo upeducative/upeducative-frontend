@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants/routes';
+import { BRANDING } from '@/constants/branding';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -54,12 +55,9 @@ export default function Footer() {
             className="lg:col-span-1"
           >
             <Link to={ROUTES.home} className="flex items-center gap-3 mb-6 cursor-pointer">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent via-accent to-accent/70 flex items-center justify-center glow-accent-sm">
-                <span className="text-foreground font-bold text-lg">U</span>
-              </div>
-              <span className="text-xl font-semibold text-foreground">UpEducative</span>
+              <span className="text-xl font-semibold text-foreground">{BRANDING.name}</span>
             </Link>
-            <p className="text-foreground/60 text-sm mb-6">Empowering students with premium internship and training opportunities.</p>
+            <p className="text-foreground/60 text-sm mb-6">{BRANDING.tagline}</p>
             <div className="flex gap-4">
               {socialLinks.map((social, i) => {
                 const Icon = social.icon;
@@ -125,7 +123,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-sm text-foreground/60">Email</p>
-              <p className="text-foreground font-medium">upeducative@gmail.com</p>
+              <p className="text-foreground font-medium">{BRANDING.email}</p>
             </div>
           </motion.div>
 
@@ -141,7 +139,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-sm text-foreground/60">Phone</p>
-              <p className="text-foreground font-medium">+917731070103</p>
+              <p className="text-foreground font-medium">{BRANDING.primaryPhone}</p>
             </div>
           </motion.div>
 
@@ -157,7 +155,7 @@ export default function Footer() {
             </div>
             <div>
               <p className="text-sm text-foreground/60">Address</p>
-              <p className="text-foreground font-medium">Patna, India</p>
+              <p className="text-foreground font-medium">{BRANDING.address}</p>
             </div>
           </motion.div>
         </motion.div>
@@ -171,7 +169,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <p className="text-foreground/60 text-sm">
-            © {currentYear} UpEducative. All rights reserved.
+            © {currentYear} {BRANDING.name}. All rights reserved.
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="text-foreground/60 hover:text-accent transition-colors text-sm">

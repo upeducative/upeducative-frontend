@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Layout from '@/layouts/Layout';
+import { BRANDING } from '@/constants/branding';
 
 export default function Contact() {
   return (
@@ -111,7 +112,7 @@ function ContactSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-1">Email</h3>
-                <p className="text-foreground/70">hello@upeducative.com</p>
+                <p className="text-foreground/70">{BRANDING.supportEmail}</p>
               </div>
             </div>
 
@@ -121,7 +122,7 @@ function ContactSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-1">Phone</h3>
-                <p className="text-foreground/70">+91 9876 543 210</p>
+                <p className="text-foreground/70">{BRANDING.supportPhone}</p>
               </div>
             </div>
 
@@ -131,7 +132,7 @@ function ContactSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-1">Address</h3>
-                <p className="text-foreground/70">Bangalore, India</p>
+                <p className="text-foreground/70">{BRANDING.supportAddress}</p>
               </div>
             </div>
 

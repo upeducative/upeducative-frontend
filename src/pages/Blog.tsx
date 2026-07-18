@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Layout from '@/layouts/Layout';
+import { BRANDING } from '@/constants/branding';
 
 export default function Blog() {
   return (
@@ -50,7 +51,7 @@ function ArticlesSection() {
     },
     {
       title: 'Student Success Story: From Internship to Job Offer',
-      excerpt: 'Read how Priya transformed her career through UpEducative internships.',
+      excerpt: `Read how Priya transformed her career through ${BRANDING.name} internships.`,
       date: 'Jul 5, 2024',
       category: 'Success Stories',
       readTime: '7 min',

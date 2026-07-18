@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import Layout from '@/layouts/Layout';
+import { BRANDING } from '@/constants/branding';
 
 export default function CompanyPartnership() {
   return (
@@ -15,7 +16,7 @@ export default function CompanyPartnership() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden aurora pt-20">
+    <section className="relative flex items-center justify-center overflow-hidden aurora pt-20">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
       </div>
@@ -55,7 +56,7 @@ function BenefitsSection() {
           className="text-center mb-16"
         >
           <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">Benefits</p>
-          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Why Partner with UpEducative?</h2>
+          <h2 className="text-4xl md:text-5xl font-medium text-foreground">Why Partner with {BRANDING.name}?</h2>
         </motion.div>
 
         <motion.div
@@ -145,7 +146,7 @@ function CTASection() {
           className="glass rounded-3xl p-12 md:p-20 text-center aurora"
         >
           <h2 className="text-4xl md:text-5xl font-medium text-foreground mb-6">Ready to Hire?</h2>
-          <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">Join 200+ companies already hiring top talent through UpEducative.</p>
+          <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">Join 200+ companies already hiring top talent through {BRANDING.name}.</p>
           <motion.button
             className="px-10 py-4 rounded-full bg-white text-[#050816] font-semibold hover:shadow-lg hover:shadow-sky-400/50 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
