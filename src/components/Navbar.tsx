@@ -23,9 +23,9 @@ export default function Navbar() {
   const navItems = [
     { label: 'Home', href: ROUTES.home },
     { label: 'About', href: ROUTES.about },
-    { label: 'Internships', href: ROUTES.internships },
-    { label: 'Training', href: ROUTES.training },
+    { label: 'Programs', href: ROUTES.internships },
     { label: 'Contact', href: ROUTES.contact },
+    { label: 'Carrers', href: ROUTES.training },
   ];
 
   const containerVariants = {
