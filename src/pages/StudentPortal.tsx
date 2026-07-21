@@ -2,10 +2,19 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LogOut, Menu, X, Home, User, Briefcase, Award, FileText, 
-  Bell, Download, TrendingUp, BookOpen, Clock, Play, Filter, 
+  Bell, Download, TrendingUp, BookOpen, Clock, Play, 
   Search, ChevronRight, Sparkles, ExternalLink, ChevronDown, 
-  Bookmark, Maximize2, Share2, ArrowLeft, CheckCircle2
+  Bookmark, Maximize2, Share2, ArrowLeft
 } from 'lucide-react';
+
+interface Course {
+  title: string;
+  mentor: string;
+  inst: string;
+  weeks: string;
+  progress: number;
+  image: string;
+}
 
 export default function StudentPortal() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -13,7 +22,7 @@ export default function StudentPortal() {
   const [searchQuery, setSearchQuery] = useState('');
   
   // State for Course Learning Player View
-  const [activeCourse, setActiveCourse] = useState(null);
+  const [activeCourse, setActiveCourse] = useState<Course | null>(null);
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
@@ -70,7 +79,7 @@ export default function StudentPortal() {
               <motion.button
                 key={item.id}
                 onClick={() => {
-                  setActiveCourse(null); // Reset course player when clicking main nav
+                  setActiveCourse(null);
                   setActiveTab(item.id);
                 }}
                 className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl transition-all duration-200 group relative ${
@@ -171,7 +180,7 @@ export default function StudentPortal() {
         <main className="flex-1 overflow-y-auto p-8 custom-scrollbar">
           <AnimatePresence mode="wait">
             {activeCourse ? (
-              <CourseLearningPlayer course={activeCourse} onBack={() => setActiveCourse(null)} />
+              <CourseLearningPlayer course={activeCourse} />
             ) : (
               <>
                 {activeTab === 'dashboard' && <DashboardTab setActiveTab={setActiveTab} setActiveCourse={setActiveCourse} />}
@@ -195,9 +204,9 @@ export default function StudentPortal() {
 }
 
 // ==========================================
-// COURSE LEARNING PLAYER VIEW (Integrated inside Portal)
+// COURSE LEARNING PLAYER VIEW
 // ==========================================
-function CourseLearningPlayer({ course, onBack }) {
+function CourseLearningPlayer({ course }: { course: Course | null }) {
   const [activeLessonTab, setActiveLessonTab] = useState('transcript');
   const [currentLecture, setCurrentLecture] = useState('Lecture 11: Connectivity Technologies - Part III');
   const [openWeek, setOpenWeek] = useState('week3');
@@ -221,7 +230,7 @@ function CourseLearningPlayer({ course, onBack }) {
         </div>
       </div>
 
-      {/* Main Grid: Sidebar playlist + Video Player */}
+      {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left Playlist Sidebar */}
@@ -304,7 +313,6 @@ function CourseLearningPlayer({ course, onBack }) {
 
         {/* Right Video & Transcript Section */}
         <div className="lg:col-span-8 space-y-6">
-          {/* Video Player Box */}
           <div className="bg-[#0b0f19] border border-white/10 rounded-3xl p-6 shadow-xl space-y-4">
             <h3 className="text-xl font-bold text-white">{currentLecture}</h3>
             
@@ -370,9 +378,6 @@ function CourseLearningPlayer({ course, onBack }) {
                 <p className="text-xs text-slate-300 leading-relaxed">
                   In this module, we dive deeper into connectivity technologies for Industrial IoT applications. Understanding the physical and MAC layer differences between WirelessHART and ZigBee is critical for network reliability in high-interference environments.
                 </p>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  WirelessHART utilizes time division multiple access (TDMA), allotting individual time slots for each transmission. This prevents collisions and ensures deterministic latency, which is essential for mission-critical industrial monitoring.
-                </p>
               </div>
             )}
 
@@ -380,7 +385,7 @@ function CourseLearningPlayer({ course, onBack }) {
               <div className="text-xs text-slate-300 space-y-3">
                 <p className="font-bold text-white">Your Personal Notes for this Lecture:</p>
                 <textarea 
-                  rows="4" 
+                  rows={4} 
                   placeholder="Type your notes here during the lecture..." 
                   className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-sky-500"
                 ></textarea>
@@ -408,13 +413,10 @@ function CourseLearningPlayer({ course, onBack }) {
 }
 
 // ==========================================
-// STANDARD TABS (Dashboard, Training, etc.)
+// STANDARD TABS
 // ==========================================
-function DashboardTab({ setActiveTab, setActiveCourse }) {
-  const categories = ['All Courses', 'Design', 'Engineering', 'Management', 'Health Sciences'];
-  const [activeCategory, setActiveCategory] = useState('All Courses');
-
-  const courses = [
+function DashboardTab({ setActiveTab, setActiveCourse }: { setActiveTab: (tab: string) => void; setActiveCourse: (course: Course) => void }) {
+  const courses: Course[] = [
     { title: 'Product Design and Development', mentor: 'Prof. Inderdeep Singh', inst: 'IIT Roorkee', weeks: '12 Weeks', progress: 38, image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80' },
     { title: 'Fundamentals of Additive Manufacturing', mentor: 'Prof. Sajan Kapil', inst: 'IIT Guwahati', weeks: '8 Weeks', progress: 15, image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80' },
     { title: 'Building Materials as a Cornerstone', mentor: 'Prof. Iyer Vijayalaxmi', inst: 'SPA Vijayawada', weeks: '10 Weeks', progress: 0, image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80' },
@@ -472,7 +474,7 @@ function DashboardTab({ setActiveTab, setActiveCourse }) {
         </div>
       </div>
 
-      {/* In Progress Section (Clickable to open Learning Player) */}
+      {/* In Progress Section */}
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-sky-400 animate-ping" /> In Progress (Click to Start Learning)
@@ -511,11 +513,9 @@ function DashboardTab({ setActiveTab, setActiveCourse }) {
 
       {/* My Courses Grid */}
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold text-white">My Courses</h2>
-            <p className="text-xs text-slate-400">Click any card to launch the course study player.</p>
-          </div>
+        <div>
+          <h2 className="text-2xl font-bold text-white">My Courses</h2>
+          <p className="text-xs text-slate-400">Click any card to launch the course study player.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -557,15 +557,12 @@ function DashboardTab({ setActiveTab, setActiveCourse }) {
   );
 }
 
-// Full Tabs setup
 function ProfileTab() {
   return (
     <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.4 }} className="space-y-8 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-white">Student Profile</h1>
-          <p className="text-xs text-slate-400">Manage your personal details and academic preferences.</p>
-        </div>
+      <div>
+        <h1 className="text-3xl font-bold text-white">Student Profile</h1>
+        <p className="text-xs text-slate-400">Manage your personal details and academic preferences.</p>
       </div>
 
       <div className="bg-[#0b0f19] border border-white/10 rounded-3xl p-8 shadow-xl space-y-6">
@@ -656,7 +653,7 @@ function InternshipsTab() {
   );
 }
 
-function TrainingTab({ setActiveCourse }) {
+function TrainingTab({ setActiveCourse }: { setActiveCourse: (course: Course) => void }) {
   return (
     <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.4 }} className="space-y-8 max-w-6xl mx-auto">
       <div>
@@ -668,8 +665,8 @@ function TrainingTab({ setActiveCourse }) {
         <h2 className="text-xl font-bold text-white">Current Training Modules</h2>
         <div className="space-y-4">
           {[
-            { title: 'Advanced CAD Modeling & Prototyping', mentor: 'Dr. R. K. Sharma', progress: '75%', nextClass: 'Today, 4:00 PM' },
-            { title: 'Generative AI in Product Design', mentor: 'Prof. Ananya Roy', progress: '40%', nextClass: 'Tomorrow, 2:30 PM' },
+            { title: 'Advanced CAD Modeling & Prototyping', mentor: 'Dr. R. K. Sharma', progress: 75, nextClass: 'Today, 4:00 PM', inst: 'IIT Delhi', weeks: '8 Weeks', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80' },
+            { title: 'Generative AI in Product Design', mentor: 'Prof. Ananya Roy', progress: 40, nextClass: 'Tomorrow, 2:30 PM', inst: 'IIT Delhi', weeks: '6 Weeks', image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80' },
           ].map((item, i) => (
             <div key={i} className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="space-y-1">
@@ -677,8 +674,8 @@ function TrainingTab({ setActiveCourse }) {
                 <p className="text-xs text-slate-400">Mentor: {item.mentor} • Next Session: <span className="text-sky-400 font-semibold">{item.nextClass}</span></p>
               </div>
               <div className="flex items-center gap-4 w-full sm:w-auto justify-between">
-                <span className="text-xs font-bold text-sky-400">{item.progress} Completed</span>
-                <button onClick={() => setActiveCourse({ title: item.title, inst: 'IIT Delhi' })} className="px-4 py-2 rounded-xl bg-sky-500 text-white text-xs font-bold shadow-md shadow-sky-500/20">Open Player</button>
+                <span className="text-xs font-bold text-sky-400">{item.progress}% Completed</span>
+                <button onClick={() => setActiveCourse(item)} className="px-4 py-2 rounded-xl bg-sky-500 text-white text-xs font-bold shadow-md shadow-sky-500/20">Open Player</button>
               </div>
             </div>
           ))}
